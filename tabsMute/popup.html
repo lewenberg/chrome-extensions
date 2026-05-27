@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabsMute Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-glow"></div>
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <span class="logo-text">Tabs<span class="highlight">Mute</span></span>
+      </div>
+      <button class="settings-toggle-btn" id="settings-btn" title="Toggle Settings">
+        <svg class="gear-icon" viewBox="0 0 24 24">
+          <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Active Tab Detail -->
+      <div class="active-tab-card">
+        <div class="soundwave-container" id="soundwave">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+        <div class="tab-info">
+          <img id="tab-favicon" class="tab-favicon" src="icons/icon16.png" alt="Favicon" style="display:none;">
+          <p id="tab-title" class="tab-title">Loading Active Tab...</p>
+        </div>
+      </div>
+
+      <!-- Massive Central Toggle -->
+      <div class="toggle-wrapper">
+        <button class="glowing-mute-btn" id="mute-toggle-btn">
+          <div class="btn-ripple"></div>
+          <div class="btn-content">
+            <svg class="mute-svg-icon" id="toggle-icon" viewBox="0 0 24 24">
+              <!-- Dynamically populated speaker path -->
+            </svg>
+            <span class="btn-text" id="toggle-status">MUTE</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="status-indicator">
+        <span class="dot" id="status-dot"></span>
+        <span class="status-desc" id="status-desc">Initializing...</span>
+      </div>
+    </main>
+
+    <!-- Slide-Down Settings Panel -->
+    <section class="settings-panel" id="settings-panel">
+      <h3 class="panel-title">Configuration</h3>
+      
+      <!-- Key Select -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">Hotkey (Fullscreen)</span>
+          <span class="setting-sub">Triggers toggle in fullscreen</span>
+        </div>
+        <select class="custom-select" id="shortcut-select">
+          <option value="m">M / m Key</option>
+          <option value="AudioVolumeMute">Mute Key (Hardware)</option>
+          <option value="v">V / v Key</option>
+          <option value="s">S / s Key</option>
+          <option value="Space">Spacebar</option>
+        </select>
+      </div>
+
+      <!-- HUD Option -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">HUD Visual Overlay</span>
+          <span class="setting-sub">Shows macOS-style HUD</span>
+        </div>
+        <label class="switch-container">
+          <input type="checkbox" id="hud-checkbox" checked>
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <!-- Focus Mode Option -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">Focus Mode</span>
+          <span class="setting-sub">Mutes other tabs on unmute</span>
+        </div>
+        <label class="switch-container">
+          <input type="checkbox" id="focus-checkbox">
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <!-- Global command shortcut help -->
+      <div class="global-shortcut-info">
+        <p class="info-title">Global Keyboard Shortcut</p>
+        <p class="info-desc">To mute/unmute even when NOT in fullscreen, configure the global shortcut at:</p>
+        <code class="settings-link" id="chrome-shortcut-link">chrome://extensions/shortcuts</code>
+      </div>
+    </section>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
